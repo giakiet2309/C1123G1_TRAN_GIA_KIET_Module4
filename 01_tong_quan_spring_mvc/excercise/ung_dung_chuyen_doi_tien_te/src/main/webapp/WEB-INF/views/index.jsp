@@ -5,7 +5,7 @@
     <title>Chuyển đổi tiền tệ</title>
 </head>
 <body>
-<form action="mainpage" method="post">
+<form action="result" method="post">
     <select name="changeTo">
         <option ${"VND to USD".equals(change) ? "selected" : ""}>VND to USD</option>
         <option ${"USD to VND".equals(change) ? "selected" : ""}>USD to VND</option>
@@ -14,6 +14,7 @@
     <button type="submit">change</button>
 
     <h3>Kết quả : ${result}</h3>
+
 </form>
 </body>
 </html>

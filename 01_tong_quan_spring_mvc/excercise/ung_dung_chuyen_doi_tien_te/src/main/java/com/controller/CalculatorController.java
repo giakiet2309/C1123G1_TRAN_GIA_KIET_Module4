@@ -13,7 +13,7 @@ public class CalculatorController {
         return "index";
     }
 
-    @PostMapping("/mainpage")
+    @PostMapping("/result")
     public String changeCurrency(@RequestParam String changeTo,
                                  @RequestParam double currency,
                                  Model model) {
