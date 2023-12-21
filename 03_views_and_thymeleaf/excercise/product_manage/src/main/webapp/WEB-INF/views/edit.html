@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Item</title>
+    <link rel="stylesheet" type="text/css" href="../../../resources/style.css">
+</head>
+<body>
+<a href="/">Trở về trang chủ</a>
+<form method="post" action="/edit" th:object="${product}">
+  <table>
+    <tr>
+      <td>Tên</td>
+      <td><input name="name" type="text" required th:value='${product.getName()}'/></td>
+    </tr>
+      <tr>
+          <td>Giá</td>
+          <td><input name="price" type="number" required th:value='${product.getPrice()}'/></td>
+      </tr>
+      <tr>
+          <td>Mô tả</td>
+          <td><input name="description" type="text" required th:value='${product.getDescription()}'/></td>
+      </tr>
+      <tr>
+          <td>Nhà sản xuất</td>
+          <td><input name="manufacture" type="text" required th:value='${product.getManufacture()}'/></td>
+      </tr>
+  </table>
+    <td><input name="id" type="hidden" required th:value='${product.getId()}'/></td>
+  <button type="submit">Lưu</button>
+</form>
+</body>
+</html>

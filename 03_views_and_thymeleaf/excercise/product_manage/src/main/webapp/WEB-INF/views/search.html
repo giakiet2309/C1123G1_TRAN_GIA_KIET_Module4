@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Search</title>
+    <link rel="stylesheet" type="text/css" href="../../../resources/style.css">
+</head>
+<body>
+<form action="/search" method="post">
+    <input name="keyword" type="text" th:value="${input}">
+    <button type="submit">search</button>
+</form>
+<table>
+    <thead>
+    <tr>
+        <td>Stt</td>
+        <td>Tên</td>
+        <td>Giá</td>
+        <td>Mô tả</td>
+        <td>Nhà sản xuất</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="product, productStat : ${list}">
+        <td th:text="${productStat.index + 1}"></td>
+        <td th:text="${product.getName()}"></td>
+        <td th:text="${product.getPrice()}"></td>
+        <td th:text="${product.getDescription()}"></td>
+        <td th:text="${product.getManufacture()}"></td>
+    </tr>
+    </tbody>
+</table>
+<a href="/">Trở về trang chủ</a>
+</body>
+</html>
