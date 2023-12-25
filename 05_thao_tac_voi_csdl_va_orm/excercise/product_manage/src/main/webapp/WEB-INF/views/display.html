@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <title>Display</title>
+    <link rel="stylesheet" href="/resources/css/style.css"/>
+<!--    <script src="/resources/js/script.js"></script>-->
+</head>
+<body>
+<h3>Product List</h3>
+<a href="create">Thêm mới</a>
+<a href="search/">Tìm kiếm</a>
+<table>
+    <thead>
+        <tr>
+            <td>Stt</td>
+            <td>Tên</td>
+            <td>Giá</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="product, productStat : ${list}">
+            <td th:text="${productStat.index + 1}"></td>
+            <td th:text="${product.getName()}"></td>
+            <td th:text="${product.getPrice()}"></td>
+            <td><a th:href="@{'detail/' + ${product.getId()}}">chi tiết</a></td>
+            <td><a th:href="@{'edit/' + ${product.getId()}}">sửa</a></td>
+            <td><a th:href="@{'delete/' + ${product.getId()}}">xóa</a></td>
+        </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

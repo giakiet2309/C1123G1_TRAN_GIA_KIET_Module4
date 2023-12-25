@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Create</title>
+    <link rel="stylesheet" type="text/css" href="../../../resources/style.css">
+</head>
+<body>
+<form method="post" action="/create" th:object="${product}">
+    <a href="/">Trở về trang chủ</a>
+    <table>
+        <tr>
+            <td>Tên</td>
+            <td><input name="name" type="text" required/></td>
+        </tr>
+        <tr>
+            <td>Giá</td>
+            <td><input name="price" type="number" required/></td>
+        </tr>
+        <tr>
+            <td>Mô tả</td>
+            <td><input name="description" type="text" required/></td>
+        </tr>
+        <tr>
+            <td>Nhà sản xuất</td>
+            <td><input name="manufacture" type="text" required/></td>
+        </tr>
+    </table>
+    <button type="submit">Lưu</button>
+</form>
+
+</body>
+</html>
