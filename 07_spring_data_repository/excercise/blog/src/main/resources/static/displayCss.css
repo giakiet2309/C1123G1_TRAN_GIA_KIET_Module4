@@ -1,0 +1,15 @@
+h3{
+    text-align: center;
+}
+div{
+    border: black 1px solid;
+    border-radius: 20px;
+    padding: 10px;
+    margin: 10px;
+}
+a{
+    border: black 1px solid;
+    text-decoration: none;
+    height: 100px;
+    width: 350px;
+}

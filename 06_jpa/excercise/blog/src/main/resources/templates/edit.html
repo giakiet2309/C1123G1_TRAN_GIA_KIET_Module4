@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sửa bài viết</title>
+  <link rel="stylesheet" href="displayCss.css">
+</head>
+<body>
+<h3>Sửa bài viết</h3>
+<a href="/">Trở lại trang chủ</a>
+<form action="/edit" method="post" th:object="${editBlog}">
+  <table>
+    <input type="hidden" th:field="*{id}">
+    <tr>
+      <td>Tác giả</td>
+      <td><input type="text" th:field="*{own}"></td>
+    </tr>
+    <tr>
+      <td>Nội dung</td>
+      <td><input type=text th:field="*{content}"></td>
+    </tr>
+  </table>
+  <button>Gửi</button>
+</form>
+
+</body>
+</html>

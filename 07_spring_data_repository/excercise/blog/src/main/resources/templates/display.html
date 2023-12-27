@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Blog tâm sự tuổi hồng</title>
+    <link rel="stylesheet" href="/displayCss.css">
+</head>
+<body>
+<h3>Trang Blog </h3>
+<form action="/" method="get">
+    <input type="text" name="search" placeholder="Tên tác giả" th:value="${search}">
+    <button type="submit">Tìm kiếm</button>
+</form>
+<a href="/create">Thêm bài viết</a>
+<div th:each="b,status : ${blogList}">
+    <p>Ngày tạo : <span th:text="${b.getCreateDate()}"></span></p>
+    <p>Tác giả : <span th:text="${b.getOwn()}"></span></p>
+    <p>Loại : <span th:text="${b.getCategory().getCategory()}"></span></p>
+    <p>Nội dung : <span th:text="${b.getContent()}"></span></p>
+    <a th:href="@{'/edit/' + ${b.getId()}}">Sửa bài viết</a>
+    <a th:href="@{'/delete/' + ${b.getId()}}">Xóa bài viết</a>
+</div>
+<a th:if="${blogList.hasPrevious()}" th:href="@{'/?page=' + ${blogList.getNumber() - 1}}">Previous</a>
+<span th:text="'page ' + ${blogList.getNumber() + 1} + '/' + ${blogList.getSize()}"></span>
+<a th:if="${blogList.hasNext()}" th:href="@{'/?page=' + ${blogList.getNumber() + 1}}">Next</a>
+
+</body>
+</html>

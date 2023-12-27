@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Tâm sự tuổi mới lớn</title>
+    <link rel="stylesheet" href="displayCss.css">
+</head>
+<body>
+<h3>Trang Blog tâm sự thầm kín tuổi mới lớn</h3>
+<a href="/create">Thêm bài viết</a>
+<div th:each="blog: ${blogList}">
+    <p>Tác giả : <span th:text="${blog.getOwn()}"></span></p>
+    <p>Nội dung : <span th:text="${blog.getContent()}"></span></p>
+    <a th:href="@{'/edit/' + ${blog.getId()}}">Sửa bài viết</a>
+    <a th:href="@{'/delete/' + ${blog.getId()}}">Xóa bài viết</a>
+</div>
+</body>
+</html>
