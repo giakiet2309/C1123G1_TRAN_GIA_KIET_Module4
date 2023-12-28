@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Music Manage</title>
+    <link rel="stylesheet" href="/tablecss.css">
+</head>
+<body>
+<h3>Music List</h3>
+<button onclick="createNewMusic()">Create New Music</button>
+<table>
+  <tr>
+    <td>No.</td>
+    <td>Music Name</td>
+    <td>Artist</td>
+    <td>Type</td>
+    <td>Action</td>
+  </tr>
+  <tr th:each="music, musicStatus : ${musicList}">
+    <td th:text="${musicStatus.index + 1}"></td>
+    <td th:text="${music.getMusicName()}"></td>
+    <td th:text="${music.getArtist()}"></td>
+    <td th:text="${music.getMusicType()}"></td>
+    <td>
+      <button th:attr="onclick=|editMusic(${music.getId()})|">Edit</button>
+      <button th:attr="onclick=|deleteMusic(${music.getId()})|">Delete</button>
+    </td>
+  </tr>
+</table>
+
+</body>
+<script>
+  function createNewMusic(){
+    window.location.href = "/create";
+  }
+  function editMusic(id){
+    window.location.href = "/edit/" + id;
+  }
+  function deleteMusic(id){
+    window.location.href = "/delete/" + id;
+  }
+</script>
+</html>

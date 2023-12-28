@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Account Manage</title>
+    <link rel="stylesheet" href="/tablecss.css">
+</head>
+<body>
+<h3>Account Manage</h3>
+<button onclick="createAccount()">New Account</button>
+<table>
+    <tr>
+        <td>No.</td>
+        <td>First Name</td>
+        <td>Last Name</td>
+        <td>Phone Number</td>
+        <td>Age</td>
+        <td>Email</td>
+        <td>Action</td>
+    </tr>
+    <tr th:each="account, accountStatus : ${accountList}">
+        <td th:text="*{accountStatus.index + 1}"></td>
+        <td th:text="*{account.getFirstName()}"></td>
+        <td th:text="*{account.getLastName()}"></td>
+        <td th:text="*{account.getPhoneNumber()}"></td>
+        <td th:text="*{account.getAge()}"></td>
+        <td th:text="*{account.getEmail()}"></td>
+        <td>
+            <button th:attr="onclick=|editAccount(${account.getId()})|">Edit</button>
+            <button th:attr="onclick=|deleteAccount(${account.getId()})|">Delete</button>
+        </td>
+    </tr>
+</table>
+</body>
+<script>
+    function createAccount(){
+        window.location.href = "/create";
+    }
+    function editAccount(id){
+        window.location.href = "/edit/" + id;
+    }
+    function deleteAccount(id){
+        window.location.href = "/delete/" + id;
+    }
+</script>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New Music</title>
+    <link rel="stylesheet" href="/tablecss.css">
+</head>
+<body>
+<h3>New Music</h3>
+<button onclick="backToMainPage()">Back to Main Page</button>
+<form action="/create" method="post" th:object="${musicDto}">
+  <table>
+    <tr>
+      <td>Music Name</td>
+      <td>
+        <input type="text" th:field="*{musicName}">
+
+        <span th:if="${#fields.hasErrors('musicName')}" th:errors="*{musicName}"></span>
+      </td>
+    </tr>
+    <tr>
+      <td>Artist</td>
+      <td>
+        <input type="text" th:field="*{artist}">
+        <span th:if="${#fields.hasErrors('artist')}" th:errors="*{artist}"></span>
+      </td>
+    </tr>
+    <tr>
+      <td>Music Type</td>
+      <td>
+        <input type="text" th:field="*{musicType}">
+        <span th:if="${#fields.hasErrors('musicType')}" th:errors="*{musicType}"></span>
+      </td>
+    </tr>
+  </table>
+  <button type="submit">Submit</button>
+</form>
+
+</body>
+<script>
+  function backToMainPage(){
+    window.location.href = "/";
+  }
+</script>
+</html>
