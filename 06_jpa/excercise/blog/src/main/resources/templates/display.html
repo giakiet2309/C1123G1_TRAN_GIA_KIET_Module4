@@ -2,18 +2,20 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 
 <head>
+    <link rel="shortcut icon" type="x-icon" href="images/pngegg.png">
     <meta charset="UTF-8">
-    <title>Tâm sự tuổi mới lớn</title>
+    <title>Ahihi</title>
     <link rel="stylesheet" href="displayCss.css">
 </head>
 <body>
-<h3>Trang Blog tâm sự thầm kín tuổi mới lớn</h3>
+<h3>Trang Blog tâm sự thầm kín </h3>
 <a href="/create">Thêm bài viết</a>
 <div th:each="blog: ${blogList}">
     <p>Tác giả : <span th:text="${blog.getOwn()}"></span></p>
     <p>Nội dung : <span th:text="${blog.getContent()}"></span></p>
     <a th:href="@{'/edit/' + ${blog.getId()}}">Sửa bài viết</a>
     <a th:href="@{'/delete/' + ${blog.getId()}}">Xóa bài viết</a>
+    <a th:href="@{'/see/' + ${blog.getId()}}">doc bai viet</a>
 </div>
 </body>
 </html>

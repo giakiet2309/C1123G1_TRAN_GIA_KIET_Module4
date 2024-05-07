@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+</head>
+<style>
+    /*css toast*/
+    .toast-container {
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        max-width: 300px;
+        width: 100%;
+        text-align: center;
+        z-index: 9999;
+    }
+
+    #toast {
+        background-color: #4CAF50; /* Màu xanh của dấu tích */
+        color: #fff;
+        padding: 10px;
+        border-radius: 5px;
+        display: none;
+    }
+
+    #toast.show {
+        display: block;
+        animation: fadeOut 3s forwards; /* Sử dụng animation để tự động ẩn toast sau thời gian */
+    }
+
+    .icon {
+        margin-left: 5px;
+        font-size: 18px;
+    }
+
+    @keyframes fadeOut {
+        to {
+            opacity: 0;
+        }
+    }
+
+    /*css table vs tìm kiếm */
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
+
+    h2 {
+        color: #333;
+        text-align: center;
+    }
+
+    /*form {*/
+    /*  display: flex;*/
+    /*  justify-content: space-between;*/
+    /*  align-items: center;*/
+    /*  margin-bottom: 20px;*/
+    /*}*/
+
+    input[name="nameSearch"] {
+        flex: 1;
+        padding: 10px;
+        margin-right: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    select {
+        padding: 10px;
+        margin-right: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    input[type="submit"] {
+        padding: 10px;
+        background-color: #5bc0de;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    a.btn {
+        display: inline-block;
+        padding: 10px;
+        background-color: #28a745;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 4px;
+    }
+
+    a.btn:hover {
+        background-color: #218838;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    thead th, tbody th, tbody td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: left;
+    }
+
+    thead th {
+        background-color: #f2f2f2;
+    }
+
+    tbody th button, tbody td button {
+        padding: 8px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    tbody th button:hover, tbody td button:hover {
+        background-color: #0056b3;
+    }
+</style>
+<body>
+<div th:if="${msg == 1}" class="toast-container">
+    <div id="toast" class="show">
+        <span> Đã Thêm Mới Thành công</span>
+        <span class="icon">&#10004;</span>
+    </div>
+</div>
+<div th:if="${msg == 2}" class="toast-container">
+    <div id="toast2" class="show2">
+        <span> Đã Sửa Thành công</span>
+        <span class="icon">&#10004;</span>
+    </div>
+</div>
+<div th:if="${msg == 3}" class="toast-container">
+    <div id="toast3" class="show3">
+        <span> Đã Xoá Thành công</span>
+        <span class="icon">&#10004;</span>
+    </div>
+</div>
+
+<!--<h2>Tìm Kiếm</h2>-->
+<!--<form method="get">-->
+<!--  <input name="nameSearch">-->
+<!--  <select>-->
+<!--    <option>cc</option>-->
+<!--    <option>HEHE</option>-->
+<!--  </select>-->
+<!--  <input type="submit">-->
+<!--</form>-->
+<a class="btn btn-success" th:href="@{/thanhPho/them}">Thêm Mới</a>
+<table>
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Thành Phố</th>
+        <th>Quốc Gia</th>
+        <th colspan="2" style="text-align: center">Hành Động</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="tp , loop : ${thanhPhos}">
+        <th th:text="${loop.count}"></th>
+        <th><a th:text="${tp.getTenThanhPho()}" th:href="'/thanhPho/chiTiet/' + ${tp.getId()}"></a></th>
+        <th th:text="${tp.getQuocGia().getTenQuoc()}"></th>
+        <th><a class="btn btn-primary" th:href="'/thanhPho/chinhSua/' + ${tp.getId()}"> Chỉnh Sửa</a></th>
+        <th>
+            <button type="button" class="btn btn-primary"
+                    th:attr="data-id=${tp.getId()} , data-name = ${tp.getTenThanhPho()}" onclick="deleteModal(this)"
+                    data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Xoá
+            </button>
+        </th>
+    </tr>
+    </tbody>
+</table>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="/thanhPho/xoa" method="get">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Bạn Có Chắc Chắn Muốn Xoá Thành Phố <span
+                            id="nameDelete"></span></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <input type="hidden" name="id" id="idDelete">
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Thoát</button>
+                    <button type="submit" class="btn btn-primary">Xoá</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var toast = document.getElementById('toast');
+        if (toast && toast.classList.contains('show')) {
+            setTimeout(function () {
+                toast.classList.remove('show');
+            }, 5000);
+        }
+    });
+    document.addEventListener('DOMContentLoaded', function () {
+        var toast = document.getElementById('toast2');
+        if (toast && toast.classList.contains('show2')) {
+            setTimeout(function () {
+                toast.classList.remove('show2');
+            }, 5000);
+        }
+    });
+    document.addEventListener('DOMContentLoaded', function () {
+        var toast = document.getElementById('toast3');
+        if (toast && toast.classList.contains('show3')) {
+            setTimeout(function () {
+                toast.classList.remove('show3');
+            }, 5000);
+        }
+    });
+
+    function deleteModal(element) {
+        let id = element.getAttribute('data-id');
+        let name = element.getAttribute('data-name');
+        document.getElementById('idDelete').value = id;
+        document.getElementById('nameDelete').innerText = name;
+    }
+</script>

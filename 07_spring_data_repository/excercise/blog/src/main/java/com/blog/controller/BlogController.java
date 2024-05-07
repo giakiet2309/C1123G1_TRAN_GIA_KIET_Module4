@@ -22,7 +22,7 @@ public class BlogController {
                              @RequestParam(required = false, defaultValue = "") String search,
                              @RequestParam(required = false, defaultValue = "0") int page){
 
-        Pageable pageable = PageRequest.of(page,2);
+        Pageable pageable = PageRequest.of(page,3);
         Page<Blog> blogPage = blogService.search(search, pageable);
 
         model.addAttribute("blogList", blogPage);

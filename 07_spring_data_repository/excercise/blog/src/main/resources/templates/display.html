@@ -16,13 +16,13 @@
 <div th:each="b,status : ${blogList}">
     <p>Ngày tạo : <span th:text="${b.getCreateDate()}"></span></p>
     <p>Tác giả : <span th:text="${b.getOwn()}"></span></p>
-    <p>Loại : <span th:text="${b.getCategory().getCategory()}"></span></p>
+    <p>Loại : <span th:text="${b.getCategory().category}"></span></p>
     <p>Nội dung : <span th:text="${b.getContent()}"></span></p>
     <a th:href="@{'/edit/' + ${b.getId()}}">Sửa bài viết</a>
     <a th:href="@{'/delete/' + ${b.getId()}}">Xóa bài viết</a>
 </div>
 <a th:if="${blogList.hasPrevious()}" th:href="@{'/?page=' + ${blogList.getNumber() - 1}}">Previous</a>
-<span th:text="'page ' + ${blogList.getNumber() + 1} + '/' + ${blogList.getSize()}"></span>
+<span th:text="'Page ' + ${blogList.getNumber()+1 } + '/' + ${blogList.totalPages}"></span>
 <a th:if="${blogList.hasNext()}" th:href="@{'/?page=' + ${blogList.getNumber() + 1}}">Next</a>
 
 </body>

@@ -15,11 +15,10 @@ import org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import org.thymeleaf.templatemode.TemplateMode;
 
-import javax.transaction.Transactional;
 
 @Configuration
 @EnableWebMvc
-@Transactional
+
 @ComponentScan("com")
 public class AppConfiguration extends WebMvcConfigurerAdapter implements ApplicationContextAware {
 

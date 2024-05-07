@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book</title>
+    <link rel="stylesheet" href="/book_css.css">
+</head>
+<body>
+<h3>Trang Web mượn sách</h3>
+<form action="returnBook">
+    <span>Mã mượn sách : </span>
+    <input type="text" name="code">
+    <button>Trả sách</button>
+</form>
+<table>
+      <tr>
+        <td>Stt</td>
+        <td>Tên sách</td>
+        <td>SL Hiện có</td>
+        <td>Action</td>
+      </tr>
+        <tr th:each="book,bookStatus:${books}">
+            <td th:text="${bookStatus.index + 1}"></td>
+            <td th:text="${book.name}"></td>
+            <td th:text="${book.quality}"></td>
+            <td><button th:attr="onclick=|hire(${book.id})|">Thuê</button></td>
+        </tr>
+</table>
+<p th:if="${numberRandom != null}">Mã số mượn sách của bạn là <span th:text="${numberRandom}"></span></p>
+<p th:if="${messageFail != null}" th:text="${messageFail}"></p>
+</body>
+<script>
+    function hire(id){
+        window.location.href = "/hire/" + id;
+    }
+</script>
+</html>

@@ -36,7 +36,7 @@ dependencies {
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
 
 //    hibernate
-    implementation group: 'org.hibernate', name: 'hibernate-core', version: '5.4.3.Final'
+    implementation group: 'org.hibernate', name: 'hibernate-core', version: '5.2.3.Final'
     implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.11'
 }
 

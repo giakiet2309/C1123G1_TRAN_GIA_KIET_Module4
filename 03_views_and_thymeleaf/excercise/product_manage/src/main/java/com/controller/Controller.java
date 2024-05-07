@@ -15,12 +15,14 @@ public class Controller {
         model.addAttribute("list", service.getAll());
         return "display";
     }
+
     @GetMapping("delete/{id}")
     public String delete(@PathVariable int id){
         System.out.println(id);
         service.delete(id);
         return "redirect: /";
     }
+
     @GetMapping("edit/{id}")
     public String showEditForm(@PathVariable int id, Model model){
         model.addAttribute("product", service.detail(id));

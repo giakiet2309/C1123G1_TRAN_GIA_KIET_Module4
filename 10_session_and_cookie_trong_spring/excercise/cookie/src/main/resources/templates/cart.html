@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Giỏ hàng</title>
+    <style>
+        img{
+            width: 300px;
+        }
+        table{
+            border-collapse: collapse;
+        }
+        td,th{
+            border: black 1px solid;
+            padding: 10px;
+        }
+        a{
+            border: black 1px solid;
+            padding: 10px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+<h3>Giỏ hàng</h3>
+<table>
+    <tr>
+        <th>stt</th>
+        <th>Sản phẩm</th>
+        <th>Số lượng</th>
+        <th>Đơn giá</th>
+        <th></th>
+    </tr>
+    <tr th:each="cartMap, mapStatus : ${cart.getProducts()}">
+        <td th:text="${mapStatus.index + 1}"></td>
+        <td th:text="${cartMap.key.getName()}"></td>
+        <td><input id="quantity" type="number" th:value="${cartMap.value}" min="1"
+                   th:attr="onchange=|updateQuantity(${cartMap.key.getId()}, this.value)|"></td>
+        <td th:text="${cartMap.key.getPrice()}"></td>
+        <td><a th:href="@{'/delete/' + ${cartMap.getKey().getId()}}">Xóa</a></td>
+    </tr>
+</table>
+<p th:text="${'Tổng tiền cần thanh toán : ' + cart.totalPayment()}"></p>
+<a href="/">Quay lại trang chủ</a>
+</body>
+<script>
+    function updateQuantity(product_id, value){
+        window.location.href = "/update/" + product_id + "/" + value;
+    }
+</script>
+</html>

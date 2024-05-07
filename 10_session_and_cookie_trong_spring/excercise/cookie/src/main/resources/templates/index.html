@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bán Game</title>
+    <style>
+        img{
+            width: 300px;
+        }
+        table{
+            border-collapse: collapse;
+            margin: 20px;
+        }
+        td,th{
+            border: black 1px solid;
+            padding: 10px;
+        }
+        a{
+            border: black 1px solid;
+            padding: 10px;
+            text-decoration: none;
+
+        }
+    </style>
+</head>
+<body>
+<h3>Shop Bán Game</h3>
+<a href="/cart">Giỏ hàng</a>
+<p th:if="${message != null}" th:text="${message}">
+<table>
+    <tr>
+        <th>Stt</th>
+        <th>Hình Ảnh</th>
+        <th>Tên Game</th>
+        <th>Giá Cả</th>
+        <th>Hành Động</th>
+    </tr>
+    <tr th:each="product, productStatus : ${product_list}">
+        <td th:text="${productStatus.index + 1}"></td>
+        <td><img th:src="${product.getImg()}"></td>
+        <td th:text="${product.getName()}"></td>
+        <td th:text="${product.getPrice()}"></td>
+        <td><a th:href="@{'/add/' + ${product.getId()}}">Thêm vào giỏ hàng</a></td>
+    </tr>
+</table>
+
+</body>
+</html>
