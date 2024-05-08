@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</head>
+<style>
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+  }
+
+  h2 {
+    color: #333;
+    text-align: center;
+  }
+
+  form {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  input[type="text"],
+  input[type="number"],
+  input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  span {
+    color: #d9534f; /* Bootstrap's error text color */
+    font-size: 12px;
+    display: block;
+    margin-top: -10px;
+    margin-bottom: 10px;
+  }
+
+  input[type="submit"] {
+    padding: 10px;
+    background-color: #5bc0de;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+  }
+
+  input[type="submit"]:hover {
+    background-color: #46b8da;
+  }
+
+
+</style>
+<body>
+<h2>Chỉnh Sủa Thành Phố </h2>
+<form  method="post"  >
+  <input type="hidden" >
+  <table>
+    <tr>
+      <td>Tên:</td>
+      <td>  <input type="text"  placeholder="Thêm Mới Tên Thành Phố" >
+        <span style="color: red"  ></span></td>
+    </tr>
+    <tr>
+      <td>Quốc Gia:</td>
+      <td> <select >
+        <option ></option>
+      </select></td>
+    </tr>
+    <tr>
+      <td>Diện Tích:</td>
+      <td>  <input type="number" >
+        <span style="color: red" ></span></td>
+    </tr>
+    <tr>
+      <td>Dân Số:</td>
+      <td>  <input type="number" >
+        <span style="color: red" ></span></td>
+    </tr>
+    <tr>
+      <td>GDP:</td>
+      <td> <input type="number" >
+        <span style="color: red" ></span></td>
+    </tr>
+    <tr>
+      <td>Giới Thiệu</td>
+      <td><textarea ></textarea>
+        <span style="color: red" ></span></td>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>  <input type="submit" value="Gửi">
+        <a style="margin-left: 5px" class="btn btn-light" >Thoát</a></td>
+    </tr>
+  </table>
+
+</form>
+</body>
+</html>
